@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="param.js"></script>
 </head>
 <body>
-	<form method="get" action="ParamServlet">
-		아이디 : <input type="text" name="id"><br> 
+	<form method="get" action="ParamServlet" name="frm">
+		아이디 : <input type="text" name="id"><br>
 		나 이 : <input type="text" name="age"><br>
-		<input type="submit" value="전송">
+		<input type="submit" value="전송" onclick = "return check();">
 				<!--  id, age라는 parameter에 정보가 담겨짐 // 변수역할. -->
 	</form>
 </body>
