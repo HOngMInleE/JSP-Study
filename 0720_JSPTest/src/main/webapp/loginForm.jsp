@@ -1,24 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="EUC-KR"%>
+<%
+	String idcheck = "";
+	String userid = "";
+	String cookie = request.getHeader("Cookie");
+	
+	if(cookie!=null){
+		Cookie cookies[]=request.getCookies();
+		
+		for(int i=0;i<cookies.length;i++){
+			if(cookies[i].getName().equals("idcheck")){
+				idcheck=cookies[i].getValue();
+			}
+			
+			if(cookies[i].getName().equals("userid")){
+				userid=cookies[i].getValue();
+			}
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>JSP Test loginForm</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style>
+	fieldset{
+		width : 300px;
+		margin : 0 auto;
+	}
+	label {
+		display : inline-block;
+		width : 70px;
+	}
+</style>
 </head>
 <body>
-	<form method="post" action="testLogin.jsp" > 
-		<fieldset style="width:400px">
-			<legend> ë¡œê·¸ì¸ </legend>
-			<label for="userId"> ì•„ì´ë”” : </label>
-			<input type="text" name="id" id="userId"><br>
+	<fieldset>
+	    <legend>·Î±×ÀÎ</legend>
+		<form method="post" action="testLogin.jsp">
+			<label for="userid"> ¾ÆÀÌµğ : </label>
+			<input type="text" name="id" id="userid" value="<%= idcheck!=""? userid : ""%>"><br>
 			
-			<label for="userPwd"> ì•” &nbsp; í˜¸ : </label>
-			<input type="password" name="pwd" id="userPwd" ><br>
+			<label for="userpwd"> ¾Ï&nbsp;&nbsp;&nbsp;È£ : </label>
+			<input type="password" name="pwd" id="userpwd" ><br>
 			
-			<input type="checkbox" name="remember" value="true"> ì•„ì´ë”” ì €ì¥<br>
-			<input type="submit" value="ë¡œê·¸ì¸"><br>
-		</fieldset>
-	</form>
+			<input type="checkbox" name="idcheck"  <%= idcheck !=""? "checked" : ""%>>¾ÆÀÌµğ ÀúÀå
+			<br>
+			
+			<input type="submit" value="·Î±×ÀÎ">
+		</form>
+	</fieldset>
 </body>
 </html>

@@ -1,29 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>JSP Test logout</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-<% 
-	String remember = request.getParameter("remember");
-	String id = request.getParameter("id");
-	
-	//if (remember.equals("true")) {  // checkbox.true
-		//Cookie r = new Cookie("userId",id);
-		//r.setMaxAge(60*60);
-		//response.addCookie(r);
-	//} else 	
-		if (remember == null) {
-		Cookie cookie = new Cookie("userName","");
-		cookie.setMaxAge(0);
-		response.addCookie(cookie);
-	}	
+<%
+	Cookie cookie = new Cookie("username","");
+	cookie.setMaxAge(0);
+	response.addCookie(cookie);
 %>
-<script type="text/javascript">
-	alert("ë¡œê·¸ ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤.");	
+<script>
+	alert("·Î±× ¾Æ¿ô µÇ¾ú½À´Ï´Ù.");
 	location.href="loginForm.jsp";
 </script>
 </body>
