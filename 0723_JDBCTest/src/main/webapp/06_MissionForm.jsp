@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="06_MissionPro.jsp" method="post">
-		검색하실 데이터를 입력해주세요.
+		쿼리문을 검색하세요.
 		<br>
 		<input type="text" name="search">
 		<br>

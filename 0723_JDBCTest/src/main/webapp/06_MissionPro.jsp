@@ -16,8 +16,10 @@
 	ResultSet rs = null;
 	ResultSetMetaData rsmd = null;
 	
-	String sql = "select * from emp select * from dept select * from salgrade"; 
+	String sql = request.getParameter("search"); 
 
+	out.print(sql + "<br>");
+	
 	try {
 		Context init = new InitialContext();
 		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/oracleDB");
@@ -28,7 +30,39 @@
 		rs = pstmt.executeQuery();
 		rsmd = rs.getMetaData();
 
+		out.print("<table border = '1' style='width:400px'>");
+		out.print("<tr>");
+			for (int i = 1; i<= rsmd.getColumnCount(); i++) {
+				out.print("<td>");
+				out.print(rsmd.getColumnName(i));
+				out.print("</td>");
+			}
+		out.print("</tr>");
+		
+		while (rs.next()) {
+			out.print("<tr>");
+				out.print("<td>");
+					out.print(rs.getInt(1));					
+				out.print("</td>");
+				
+				out.print("<td>");
+					out.print(rs.getString(2));					
+				out.print("</td>");
 			
+				out.print("<td>");
+					out.print(rs.getInt(3));					
+				out.print("</td>");
+		
+				out.print("<td>");
+					out.print(rs.getString(4));					
+				out.print("</td>");
+	
+				out.print("<td>");
+					out.print(rs.getString(5));					
+				out.print("</td>");
+			out.print("</tr>");
+		}
+	out.print("</table>");
 			
 			
 	}catch (Exception e) {
