@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("message","로그인에 성공했습니다.");
 			url = "main.jsp";
 			
-			out.println("회원가입에 성공했습니다.");
+			out.println("로그인에 성공했습니다.");
 			
 		}else if (result == 0) {
 			request.setAttribute("message","비밀번호가 맞지 않습니다.");
