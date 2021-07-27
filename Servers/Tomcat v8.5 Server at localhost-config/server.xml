@@ -153,7 +153,13 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="0722_JDBCTest" path="/0722_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0722_JDBCTest"/><Context docBase="0723_JDBCTest" path="/0723_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0723_JDBCTest"/><Context docBase="0723_Test" path="/0723_Test" reloadable="true" source="org.eclipse.jst.jee.server:0723_Test"/><Context docBase="0726_JDBCTest" path="/0726_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0726_JDBCTest"/></Host>
+	      <Context docBase="0722_JDBCTest" path="/0722_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0722_JDBCTest">
+				      
+	      </Context>
+	      <Context docBase="0723_JDBCTest" path="/0723_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0723_JDBCTest"/>
+	      <Context docBase="0723_Test" path="/0723_Test" reloadable="true" source="org.eclipse.jst.jee.server:0723_Test"/>
+	      <Context docBase="0726_JDBCTest" path="/0726_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0726_JDBCTest"/>
+      <Context docBase="0727_DBCP" path="/0727_DBCP" reloadable="true" source="org.eclipse.jst.jee.server:0727_DBCP"/></Host>
     </Engine>
   </Service>
 </Server>
