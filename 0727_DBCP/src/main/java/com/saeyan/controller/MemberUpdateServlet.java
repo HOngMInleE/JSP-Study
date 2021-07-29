@@ -35,12 +35,14 @@ public class MemberUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
+	// 폼에서 입력한 회원 정보 얻어오기
 		String userid = request.getParameter("userid");
 		String pwd = request.getParameter("pwd");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String admin = request.getParameter("admin");
-		
+
+	// 회원 정보를 저장할 객체 생성
 		MemberVO mVo = new MemberVO();
 		mVo.setUserid(userid);
 		mVo.setPwd(pwd);
@@ -53,9 +55,5 @@ public class MemberUpdateServlet extends HttpServlet {
 		mDao.updateMember(mVo);
 		
 		response.sendRedirect("login.do");
-		
-		
 	}
-	
-	
 }

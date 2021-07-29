@@ -55,7 +55,7 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="확인" onclick="return joinCheck()">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<input type="reset" vlue="취소">		
+					<input type="reset" value="취소">		
 				</td>
 			</tr>
 		</table>

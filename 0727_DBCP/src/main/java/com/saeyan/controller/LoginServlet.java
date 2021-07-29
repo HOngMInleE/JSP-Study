@@ -30,8 +30,7 @@ public class LoginServlet extends HttpServlet {
 		//response.sendRedirect("member/login.jsp");
 		
 	// url에서 주소 노출 방지, 보안를 위해 forward 방식 사용. // login.do (주소가 노출되지 않음)
-		RequestDispatcher dispatcher = request.
-				getRequestDispatcher(url);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 		
 	}
