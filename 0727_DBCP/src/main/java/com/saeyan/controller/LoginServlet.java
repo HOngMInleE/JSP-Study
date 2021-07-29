@@ -18,13 +18,20 @@ import com.saeyan.dto.MemberVO;
 public class LoginServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
+	// 회원 정보 수정 후 login.do 요청할 경우. 이미 로그인 완료된 회원이니 main으로 이동.
+		String url = "member/login.jsp";
+		HttpSession sesseion = request.getSession();
+		if (sesseion.getAttribute("loginUser") != null) {
+			url = "main.jsp";
+		}
+		
 	// 정보 없이 이동만 하기때문에 redirect 방식 사용. // member/login.jsp (주소가 노출됨)
 		//response.sendRedirect("member/login.jsp");
 		
 	// url에서 주소 노출 방지, 보안를 위해 forward 방식 사용. // login.do (주소가 노출되지 않음)
 		RequestDispatcher dispatcher = request.
-				getRequestDispatcher("member/login.jsp");
+				getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 		
 	}

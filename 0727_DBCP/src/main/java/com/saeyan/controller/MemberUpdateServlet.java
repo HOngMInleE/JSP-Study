@@ -35,6 +35,26 @@ public class MemberUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
+		String userid = request.getParameter("userid");
+		String pwd = request.getParameter("pwd");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String admin = request.getParameter("admin");
+		
+		MemberVO mVo = new MemberVO();
+		mVo.setUserid(userid);
+		mVo.setPwd(pwd);
+		mVo.setEmail(email);
+		mVo.setPhone(phone);
+		mVo.setAdmin(Integer.parseInt(admin));
+		
+		MemberDAO mDao = MemberDAO.getInstance();
+		
+		mDao.updateMember(mVo);
+		
+		response.sendRedirect("login.do");
+		
+		
 	}
 	
 	
