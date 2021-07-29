@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 관리</title>
-<script type="text/javascript" src="../script/member.js"></script>
+<script type="text/javascript" src="script/member.js"></script>
 </head>
 <body>
 	<h2> 로그인 </h2>
@@ -13,7 +13,8 @@
 		<table>
 			<tr>
 				<td>아이디  </td>
-				<td> <input type="text" name="userid" value="${usdrid }"></td>
+				<td> <input type="text" name="userid" value="${userid }"></td>
+				<!-- 로그인하면 userid값이 등록되어있음(세션). 브라우저 껐다가 새로 실행하면 없음(세션특징)-->
 			</tr>
 			<tr>
 				<td>암 호  </td>
