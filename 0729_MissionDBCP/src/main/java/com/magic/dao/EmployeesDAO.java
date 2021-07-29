@@ -27,7 +27,6 @@ public class EmployeesDAO {
 	private static EmployeesDAO instance = new EmployeesDAO();
 
 	private EmployeesDAO() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static EmployeesDAO getInstance() {
@@ -35,10 +34,8 @@ public class EmployeesDAO {
 	}
 	
 	public Connection getConnection() throws Exception {
-		
 		Connection conn = null;
 		Context initContext = null;
-		
 		try {
 			initContext = new InitialContext();
 			DataSource ds = (DataSource)initContext.lookup("java:/comp/env/jdbc/oracleDB");
@@ -48,7 +45,6 @@ public class EmployeesDAO {
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return conn;
 	} //getConnection end
 	
@@ -60,32 +56,23 @@ public class EmployeesDAO {
 		String sql = "select * from employees where id=?";
 		System.out.println(sql);
 		try {
-			
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,userid);
-			
 			rs = pstmt.executeQuery();
-			
 			if (rs.next()) { //비밀번호가 일치하고
-				
 				if (pwd.equals(rs.getString("pass"))) { //회원등급이 일치하면
-					
 					if (lev.equals(rs.getString("lev"))) { // 관리자로 로그인성공
 						result = 2;
-						
 						if (lev.equals("B")) { // 일반회원으로 로그인성공
 							result = 3;
 						}
-						
 					}else { // lev 불일치로 로그인 실패
 						result = 1;
 					}
-					
 				} else { // pass 불일치로 로그인 실패
 					result = 0;
 				}
-				
 			}else { // id 불일치로 로그인 실패
 				result = -1;
 			}
@@ -104,22 +91,17 @@ public class EmployeesDAO {
 	} //userCheck end
 	
 	public EmployeesVO getMember(String id) {
-		
 		EmployeesVO member = null;
-		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from employees where id=?";
-		
+
 		try {
-				
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,id);
-			
 			rs = pstmt.executeQuery();
-			
 			if (rs.next()) {
 				member = new EmployeesVO();
 				member.setId(rs.getString("ID"));
@@ -141,7 +123,6 @@ public class EmployeesDAO {
 				e.printStackTrace();
 			}
 		} //finally end
-
 		return member;
 	} //getMember end
 	
