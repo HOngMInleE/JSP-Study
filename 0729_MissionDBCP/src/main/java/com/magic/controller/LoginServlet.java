@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import com.magic.dao.EmployeesDAO;
 import com.magic.dto.EmployeesVO;
@@ -34,19 +33,18 @@ public class LoginServlet extends HttpServlet {
 		String lev = request.getParameter("lev");
 		String url = null;
 		
-		HttpSession session = request.getSession();
-		
 		EmployeesDAO empDAO = EmployeesDAO.getInstance();
 		int result = empDAO.userCheck(id, pwd, lev);
 		
 		if (result == 2 || result == 3) { 
 			// 로그인성공
 			EmployeesVO emp = new EmployeesVO();
-			emp = empDAO.getMember(id);
+			emp = empDAO.getMember(id); // VO객체에 회원정보 읽어옴
 			
-			session.setAttribute("loginUser", emp);
-			session.setAttribute("result", result);
-			url = "main.jsp";
+			HttpSession session = request.getSession(); // 로그인 정보 세션에 저장
+			session.setAttribute("loginUser", emp); // header에서 사용할 정보 loginUser에 정보 담음
+			session.setAttribute("result", result); // 2 of 3 받아온 값 저장. header에서 관리자, 일반회원 구분에 쓰임
+			url = "main.jsp"; 
 		}else { 
 			// 로그인 실패
 			if (result == 1) {

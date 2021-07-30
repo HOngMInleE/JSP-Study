@@ -54,7 +54,6 @@ public class EmployeesDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "select * from employees where id=?";
-		System.out.println(sql);
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -126,7 +125,37 @@ public class EmployeesDAO {
 		return member;
 	} //getMember end
 	
-	
+	public int updateMember (EmployeesVO eVo) {
+		int result = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update employees set pass=?, name=?, lev=?, gender=?, phone=? where id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql); // sql을 통해 정보 얻어오기
+			
+			pstmt.setString(1, eVo.getPass());
+			pstmt.setString(2, eVo.getName());
+			pstmt.setString(3, eVo.getLev());
+			pstmt.setInt(4, eVo.getGender());
+			pstmt.setString(5, eVo.getPhone());
+			pstmt.setString(6, eVo.getId());
+			
+			result = pstmt.executeUpdate();
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (pstmt != null ) pstmt.close();
+				if (conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		} //finally end
+		return result;
+	} //updateMember end
 	
 	
 }
