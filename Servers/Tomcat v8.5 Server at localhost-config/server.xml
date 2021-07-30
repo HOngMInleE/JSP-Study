@@ -159,7 +159,7 @@
 	      <Context docBase="0723_JDBCTest" path="/0723_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0723_JDBCTest"/>
 	      <Context docBase="0723_Test" path="/0723_Test" reloadable="true" source="org.eclipse.jst.jee.server:0723_Test"/>
 	      <Context docBase="0726_JDBCTest" path="/0726_JDBCTest" reloadable="true" source="org.eclipse.jst.jee.server:0726_JDBCTest"/>
-      <Context docBase="0727_DBCP" path="/0727_DBCP" reloadable="true" source="org.eclipse.jst.jee.server:0727_DBCP"/><Context docBase="0729_EmployeesManager" path="/0729_EmployeesManager" reloadable="true" source="org.eclipse.jst.jee.server:0729_EmployeesManager"/></Host>
+      <Context docBase="0727_DBCP" path="/0727_DBCP" reloadable="true" source="org.eclipse.jst.jee.server:0727_DBCP"/><Context docBase="0729_EmployeesManager" path="/0729_EmployeesManager" reloadable="true" source="org.eclipse.jst.jee.server:0729_EmployeesManager"/><Context docBase="0730_Test" path="/0730_Test" reloadable="true" source="org.eclipse.jst.jee.server:0730_Test"/><Context docBase="0722_WebStudy10" path="/0722_WebStudy10" reloadable="true" source="org.eclipse.jst.jee.server:0722_WebStudy10"/></Host>
     </Engine>
   </Service>
 </Server>
