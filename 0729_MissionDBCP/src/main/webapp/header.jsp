@@ -54,9 +54,9 @@
 						</td>
 					</c:when>
 					<c:when test="${result == 3}">		<!-- 3: lev=B(일반회원) -->
-						<td  id="lev" class="login">
+						<td  id="lev">
 							사원 등록<br>
-							<span class="red">(관리자로 로그인 후 사용 가능)</span>
+							<span class="red" >(관리자로 로그인 후 사용 가능)</span>
 						</td>
 					</c:when>
 				</c:choose>

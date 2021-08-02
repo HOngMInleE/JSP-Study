@@ -87,7 +87,7 @@ public class EmployeesDAO {
 			}
 		} //finally end
 		return result;
-	} //userCheck end
+	} //method userCheck end
 	
 	public EmployeesVO getMember(String id) {
 		EmployeesVO member = null;
@@ -123,7 +123,7 @@ public class EmployeesDAO {
 			}
 		} //finally end
 		return member;
-	} //getMember end
+	} //method getMember end
 	
 	public int updateMember (EmployeesVO eVo) {
 		int result = -1;
@@ -155,7 +155,37 @@ public class EmployeesDAO {
 			}
 		} //finally end
 		return result;
-	} //updateMember end
+	} //method updateMember end
 	
+	public void insertMember(EmployeesVO member) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "insert into employees values (?, ?, ?, ?, sysdate, ?, ?)";
+												// 컬럼이 7개라 갯수 맞춰줌. sysdate로 현재시간설정.
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql); // sql을 통해 정보 얻어오기
+			
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPass());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getLev());
+			pstmt.setInt(5, member.getGender());
+			pstmt.setString(6, member.getPhone());
+			
+			pstmt.executeUpdate();
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (pstmt != null ) pstmt.close();
+				if (conn != null) conn.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		} //finally end
+
+	}// method insertMember end
 	
 }

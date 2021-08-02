@@ -14,7 +14,7 @@
 	<form action="login.do" method="post">
 		<table align="center">
 			<tr>
-				<td colspan="2" align="center"> 로그인 </td>
+				<td colspan="2" align="center"> <h3>로그인</h3> </td>
 			</tr>
 			<tr>
 				<td align="center"> 아이디 </td>

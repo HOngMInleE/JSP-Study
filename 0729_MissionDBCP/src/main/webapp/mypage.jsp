@@ -12,7 +12,7 @@
 	<form action="mypage.do" method="post" name="frm">
 		<table align="center" width="550">
 			<tr>
-				<td colspan="2" align="center"> 마이페이지 </td>
+				<td colspan="2"> <h3>마이페이지</h3> </td>
 			</tr>
 			<tr>
 				<td id="front"> 아이디 </td>
@@ -44,7 +44,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="center"> 성별 </td>
+				<td> 성별 </td>
 				<td>
 					<select name="gender">
 						<c:choose>
@@ -61,10 +61,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td align="center"> 전화번호 </td>
+				<td> 전화번호 </td>
 				<td> <input type="tel" name="phone" value="${loginUser.phone}"></td>
 			</tr>
-			<tr align="center">
+			<tr>
 				<td colspan="2">
 					<input type="submit" value="수정">
 					<input type="reset" value="취소">

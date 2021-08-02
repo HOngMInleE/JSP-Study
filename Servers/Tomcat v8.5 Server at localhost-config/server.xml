@@ -162,7 +162,7 @@
       <Context docBase="0730_Test" path="/0730_Test" reloadable="true" source="org.eclipse.jst.jee.server:0730_Test"/>
       
       <Context docBase="0802_TestWithTeacher" path="/0802_TestWithTeacher" reloadable="true" source="org.eclipse.jst.jee.server:0802_TestWithTeacher"/>
-      </Host>
+      <Context docBase="0729_EmployeesManager" path="/0729_EmployeesManager" reloadable="true" source="org.eclipse.jst.jee.server:0729_EmployeesManager"/></Host>
     </Engine>
   </Service>
 </Server>
