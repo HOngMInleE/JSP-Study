@@ -17,7 +17,7 @@
 				<td colspan="2" align="center"><h2> 회원가입 페이지 </h2></td>
 			</tr>
 			<tr>
-				<td>아이디 :	</td>
+				<td><label for="id">아이디 :	</label></td>
 				<td> <input type="text" name="id"> </td>
 			</tr>
 			<tr>
