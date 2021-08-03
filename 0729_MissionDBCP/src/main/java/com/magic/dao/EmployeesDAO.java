@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -188,4 +189,44 @@ public class EmployeesDAO {
 
 	}// method insertMember end
 	
+	public ArrayList<EmployeesVO> selectMember() {
+		EmployeesVO member = null;
+		ArrayList<EmployeesVO> memberlist = new ArrayList<EmployeesVO>();
+		
+		Connection conn = null;
+		String sql = "select * from employees";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				member = new EmployeesVO();
+				member.setId(rs.getString("id"));
+				member.setPass(rs.getString("pass"));
+				member.setName(rs.getString("name"));
+				member.setLev(rs.getString("lev"));
+				member.setEnter(rs.getDate("enter"));
+				member.setGender(rs.getInt("gender"));
+				member.setPhone(rs.getString("phone"));
+				
+				memberlist.add(member);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return memberlist;
+	}// method selectMember end
 }

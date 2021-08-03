@@ -37,9 +37,19 @@
 			<c:if test="${empty loginUser }">
 				<td></td>
 				<td></td>
-				<td class="login"><a name="login" href="login.do">로그인</a></td>
-				<td id="lev">사원 등록<br><span class="red">(관리자로 로그인 후 사용 가능)</span></td>
-				<td>마이페이지<br><span class="red">(로그인 후 사용 가능)</span></td>
+				<td class="login">
+					<a name="login" href="login.do">로그인</a>
+				</td>
+				<td id="lev">
+					사원 등록<br>
+					<span class="red">(관리자로 로그인 후 사용 가능)</span></td>
+				<td id="lev">
+					회원 목록<br>
+					<span class="red">(관리자로 로그인 후 사용 가능)</span></td>
+				<td>
+					마이페이지<br>
+					<span class="red">(로그인 후 사용 가능)</span>
+				</td>
 			</c:if>
 			
 			<!-- 관리자 / 일반 회원의 로그인 화면  -->
@@ -56,6 +66,19 @@
 					<c:when test="${result == 3}">		<!-- 3: lev=B(일반회원) -->
 						<td  id="lev">
 							사원 등록<br>
+							<span class="red" >(관리자로 로그인 후 사용 가능)</span>
+						</td>
+					</c:when>
+				</c:choose>
+				<c:choose>
+					<c:when test="${result == 2}">		
+						<td class="login">
+							<a href="member.do">회원 목록</a>
+						</td>
+					</c:when>
+					<c:when test="${result == 3}">		
+						<td  id="lev">
+							회원 목록<br>
 							<span class="red" >(관리자로 로그인 후 사용 가능)</span>
 						</td>
 					</c:when>
