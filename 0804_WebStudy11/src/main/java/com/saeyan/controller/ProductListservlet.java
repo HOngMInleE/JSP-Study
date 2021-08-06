@@ -25,6 +25,7 @@ public class ProductListservlet extends HttpServlet {
 	// 페이지 이동시에 사라지지않게 저장할 request객체에 저장.
 		request.setAttribute("productList", productList);
 		
+	// 데이터 받은채로 페이지 이동
 		RequestDispatcher rd = request.getRequestDispatcher("product/productList.jsp");
 		rd.forward(request, response);
 	}

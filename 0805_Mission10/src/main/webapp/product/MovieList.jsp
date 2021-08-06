@@ -26,7 +26,11 @@
 				<th>삭제</th>
 			</tr>
 			<tr>
-				
+				<c:forEach var="movie" items="movieList">
+					<c:choose>
+						
+					</c:choose>
+				</c:forEach>
 			</tr>
 		</table>
 	</div>
