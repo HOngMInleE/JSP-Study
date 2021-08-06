@@ -17,13 +17,19 @@ import vo.MemberVO;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-
-		PrintWriter out = response.getWriter();
+//		response.setCharacterEncoding("text/html;charset=UTF-8");
+		
+//		PrintWriter out = response.getWriter();
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
@@ -36,15 +42,17 @@ public class LoginServlet extends HttpServlet {
 		
 		if (mVo != null) { 
 			// 로그인성공
+			mVo = svc.getLoginMember(id); // VO객체에 회원정보 읽어옴
+			
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id); 
+			session.setAttribute("loginUser", mVo); 
 			url = "index.jsp"; 
 		}else { 
 			// 로그인 실패
-			out.println("<script>");
-			out.println("alert('로그인실패')");
-			out.println("</script>");
-			url = "loginForm.html";
+//			out.print("<script>");
+//			out.print("alert('로그인실패')");
+//			out.print("</script>");
+			url = "loginForm.html"; 
 		}//if end
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
