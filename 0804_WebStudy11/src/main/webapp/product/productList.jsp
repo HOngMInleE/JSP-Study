@@ -18,13 +18,16 @@
 				</td>
 	 		</tr>
 			<tr>
-				<th>번호</th><th>이름</th><th>가격</th><th>수정</th><th>삭제</th>
+				<th>번호</th><th>이름</th><th>가격</th><th>다운</th><th>수정</th><th>삭제</th>
 			</tr>
 			<c:forEach var="product" items="${productList }">
 				<tr class="record">
 					<td> ${product.code } </td>
 					<td> ${product.name } </td>
 					<td> ${product.price } 원</td>
+					<td>
+						<a href="productDetail.do?code=${product.code}">${product.pictureUrl}</a>
+					</td>
 					<td><a href="productUpdate.do?code=${product.code}">상품 수정</a>
 					</td>
 					<td><a href="productDelete.do?code=${product.code}">상품 삭제</a>
