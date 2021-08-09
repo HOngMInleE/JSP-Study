@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>Index.HomePage</title>
+<title>Index_movie</title>
 </head>
 <body>
 	<%

@@ -27,7 +27,7 @@ public class MovieListServlet extends HttpServlet {
 		// 페이지 이동시에 사라지지않게 request객체에 데이터 저장.
 				request.setAttribute("movieList", movieList);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("product/MovieList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("movie_product/MovieList.jsp");
 		rd.forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -18,10 +18,10 @@
 				</td>
 			</tr>
 			<tr>
+				<th>등록 순서</th>
 				<th>제목</th>
 				<th>감독</th>
 				<th>배우</th>
-				<th>가격</th>
 				<th>수정</th>
 				<th>삭제</th>
 			</tr>

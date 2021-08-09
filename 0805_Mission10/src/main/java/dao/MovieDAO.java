@@ -15,7 +15,7 @@ public class MovieDAO {
 	private static MovieDAO instance = new MovieDAO();
 	// private (기본)생성자 생성
 	private MovieDAO() {
-		
+
 	}
 	// public static 본인(DAO)타입 getinstance() 이름의 메소드 생성 //getter역할.
 	public static MovieDAO getinstance() {
