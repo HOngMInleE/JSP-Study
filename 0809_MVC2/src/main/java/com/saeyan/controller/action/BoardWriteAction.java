@@ -24,6 +24,9 @@ public class BoardWriteAction implements Action{
 		
 		BoardDAO bDao = BoardDAO.getInstance();
 		
+		bDao.insertBoard(bVo); // Dao의 insert메소드 사용
+		
+		new BoardListAction().execute(request, response); // 데이터 조회, 저장 및 페이지 이동
 	}
 
 }

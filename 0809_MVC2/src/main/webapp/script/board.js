@@ -18,7 +18,7 @@ function boardCheck() {
 	return true;
 } // boardCheck()
 
-function open_win(uri, name) {
+function open_win(url, name) {
 	window.open(url, name, "width=500, height=230");
 }
 

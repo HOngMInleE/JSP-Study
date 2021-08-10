@@ -85,5 +85,73 @@ public class BoardDAO {
 		}
 	}// insertBoard()
 	
+	//조회수 증가 메소드 / 해당 num만 카운트 증가.
+	public void updateReadCount(String num) {
+		String sql = "update board set readcount = readcount + 1 where num = ?";
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, num);
+
+			pstmt.executeUpdate(); // 데이터베이스 갱신 / 값을 업데이트함.(저장시킴)
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt);
+		}
+	}// updateReadCount()
+
+	// 게시판 글 상세 내용 보기 : 글번호로 찾아온다, : 실패 null.
+		//하나의 레코드 정보 조회 메소드 / num을 매개값으로 조회.
+	public BoardVO selectOneBoardByNum(String num) {
+		BoardVO bVo = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from board where num = ?";
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				bVo = new BoardVO();
+				bVo.setNum(rs.getInt("num"));
+				bVo.setName(rs.getString("name"));
+				bVo.setEmail(rs.getString("email"));
+				bVo.setPass(rs.getString("pass"));
+				bVo.setTitle(rs.getString("title"));
+				bVo.setContent(rs.getString("content"));
+				bVo.setReadcount(rs.getInt("readcount"));
+				bVo.setWritedate(rs.getTimestamp("writedate"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return bVo;
+	}// selectOneBoardByNum() 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
