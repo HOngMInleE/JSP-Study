@@ -2,6 +2,7 @@ package com.saeyan.controller.action;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,25 +10,27 @@ import javax.servlet.http.HttpServletResponse;
 import com.saeyan.dao.BoardDAO;
 import com.saeyan.dto.BoardVO;
 
-public class BoardWriteAction implements Action{
+public class BoardUpdateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+	// VO에 입력된 값들 저장
 		BoardVO bVo = new BoardVO();
-		
+		bVo.setNum(Integer.parseInt(request.getParameter("num")));
 		bVo.setName(request.getParameter("name"));
 		bVo.setPass(request.getParameter("pass"));
 		bVo.setEmail(request.getParameter("email"));
 		bVo.setTitle(request.getParameter("title"));
 		bVo.setContent(request.getParameter("content"));
 		
+	//DB에 VO객체 업데이트
 		BoardDAO bDao = BoardDAO.getInstance();
-		
-		bDao.insertBoard(bVo); // Dao의 insert메소드 사용
-		
+		bDao.updateBoard(bVo);
+	
+	//List로 이동
 		response.sendRedirect("index.jsp");
-//		new BoardListAction().execute(request, response); // 데이터 조회, 저장 및 페이지 이동
+
 	}
 
 }

@@ -30,7 +30,7 @@
 				<tr>
 					<th>이메일</th>
 					<td>
-						<input type="email" name="email" size="40">
+						<input type="email" name="email">
 					</td>
 				</tr>
 				<tr>

@@ -162,7 +162,7 @@
       
       
       
-      <Context docBase="0806_Test" path="/0806_Test" reloadable="true" source="org.eclipse.jst.jee.server:0806_Test"/><Context docBase="0729_EmployeesManager" path="/0729_EmployeesManager" reloadable="true" source="org.eclipse.jst.jee.server:0729_EmployeesManager"/><Context docBase="0809_TestTeacher" path="/0809_TestTeacher" reloadable="true" source="org.eclipse.jst.jee.server:0809_TestTeacher"/><Context docBase="0805_Mission10" path="/0805_Mission10" reloadable="true" source="org.eclipse.jst.jee.server:0805_Mission10"/><Context docBase="0804_WebStudy11" path="/0804_WebStudy11" reloadable="true" source="org.eclipse.jst.jee.server:0804_WebStudy11"/><Context docBase="0809_MVC2" path="/0809_MVC2" reloadable="true" source="org.eclipse.jst.jee.server:0809_MVC2"/></Host>
+      <Context docBase="0809_MVC2" path="/0809_MVC2" reloadable="true" source="org.eclipse.jst.jee.server:0809_MVC2"/><Context docBase="0811_MVC2_Test" path="/0811_MVC2_Test" reloadable="true" source="org.eclipse.jst.jee.server:0811_MVC2_Test"/></Host>
     </Engine>
   </Service>
 </Server>
