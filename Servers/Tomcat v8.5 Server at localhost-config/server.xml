@@ -162,7 +162,7 @@
       
       
       
-      <Context docBase="0809_MVC2" path="/0809_MVC2" reloadable="true" source="org.eclipse.jst.jee.server:0809_MVC2"/><Context docBase="0811_MVC2_Test" path="/0811_MVC2_Test" reloadable="true" source="org.eclipse.jst.jee.server:0811_MVC2_Test"/><Context docBase="NonageShop" path="/NonageShop" reloadable="true" source="org.eclipse.jst.jee.server:NonageShop"/></Host>
+      <Context docBase="0809_MVC2" path="/0809_MVC2" reloadable="true" source="org.eclipse.jst.jee.server:0809_MVC2"/><Context docBase="0811_MVC2_Test" path="/0811_MVC2_Test" reloadable="true" source="org.eclipse.jst.jee.server:0811_MVC2_Test"/><Context docBase="NonageShop" path="/NonageShop" reloadable="true" source="org.eclipse.jst.jee.server:NonageShop"/><Context docBase="0813_Test" path="/0813_Test" reloadable="true" source="org.eclipse.jst.jee.server:0813_Test"/></Host>
     </Engine>
   </Service>
 </Server>
