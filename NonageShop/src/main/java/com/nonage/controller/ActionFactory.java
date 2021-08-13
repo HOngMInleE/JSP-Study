@@ -1,4 +1,7 @@
-package com.nonage.controller.action;
+package com.nonage.controller;
+
+import com.nonage.controller.action.Action;
+import com.nonage.controller.action.IndexAction;
 
 public class ActionFactory {
 
@@ -15,6 +18,11 @@ public class ActionFactory {
 	public Action getAction(String command) {
 		Action action = null;
 		System.out.println("ActionFactory에서 요청 받음을 확인 : " + command);
+		
+		if (command.equals("index")) {
+			action = new IndexAction();
+		}
+		
 		
 		return action;
 	}

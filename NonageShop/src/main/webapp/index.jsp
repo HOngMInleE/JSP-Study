@@ -15,12 +15,12 @@
 	<div id="front">
 		<h2>New Item</h2>
 		<div id="bestProduct">
-			<c:forEach var="productVO" items="${newProductList}">
+			<c:forEach var="productVO" items="${newProductList}"> <!-- var:지역변수 -->
 				<div id="item">
 					<a href="NonageServlet?command=product_detail&pseq=${productVO.pseq}">
 						<img alt="상품 사진" src="product_images/${productVO.image}">
 						<h3>${productVO.name }</h3>
-						<p>${productVO.price2 }</p> <!-- 1: 원가 / 2: 세일가격 -->
+						<p>${productVO.price2 }</p> <!--  DB에 저장된 컬럼명이 price2이다. -->
 					</a>		
 				</div>	
 			</c:forEach>	
@@ -35,7 +35,7 @@
 					<a href="NonageServlet?command=product_detail&pseq=${productVO.pseq}">
 						<img alt="상품 사진" src="product_images/${productVO.image}">
 						<h3>${productVO.name }</h3>
-						<p>${productVO.price2 }</p> <!-- 1: 원가 / 2: 세일가격 -->
+						<p>${productVO.price2 }</p>
 					</a>		
 				</div>	
 			</c:forEach>	
