@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%
-		response.sendRedirect("BoardList.bo");
+		response.sendRedirect("BoardList.bo");   
 	%>
 </body>
 </html>
