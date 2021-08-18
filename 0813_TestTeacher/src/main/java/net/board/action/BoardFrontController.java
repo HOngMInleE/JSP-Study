@@ -29,7 +29,16 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet impleme
 				e.printStackTrace();
 				System.out.println(command + "요청 오류");
 			}
-		}//if
+		}else if (command.equals("/boardWrite.bo")) {
+			action = new BoardAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println(command + "요청 오류");
+			}
+		}
 	
 		// 공통 기능
 		if (forward != null) {
@@ -41,7 +50,6 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet impleme
 					dispatcher.forward(request, response);
 			}
 		}//if		
-		
 		
 		
 		

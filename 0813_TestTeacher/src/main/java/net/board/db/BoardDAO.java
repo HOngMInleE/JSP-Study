@@ -87,6 +87,7 @@ public class BoardDAO {
 				e.printStackTrace();
 			}
 		}// finally
+		System.out.println("list : " + list);
 		return list;
 	}
 	
@@ -97,35 +98,56 @@ public class BoardDAO {
 	
 	//글 등록
 	public boolean boardInsert(BoardBean board){
-		String sql = "insert into board(name, pass, subject, content, file)"
-				+ "values (?, ?, ?, ?, ?)";
-		boolean result = false;
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(sql);
-			
-			pstmt.setString(1, board.getName());
-			pstmt.setString(2, board.getPass());
-			pstmt.setString(3, board.getSubject());
-			pstmt.setString(4, board.getContent());
-			pstmt.setString(5, board.getFile());
-
-			pstmt.executeUpdate(); // 데이터베이스 갱신 / 값을 업데이트함.(저장시킴)
-			result = true;
-		}catch (Exception e) {
-			e.printStackTrace();
-			result = false;
-		}finally {
-			try {
+        
+        int num =0;
+        String sql="";
+        
+        int result=0;
+        
+        try{
+           con = ds.getConnection();
+           pstmt=con.prepareStatement("select max(board_num) from board");
+           rs = pstmt.executeQuery();
+           
+           if(rs.next())
+              num =rs.getInt(1)+1;
+           else
+              num=1;
+           
+           sql="insert into board (BOARD_NUM,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,";
+           sql+="BOARD_CONTENT, BOARD_FILE, BOARD_READCOUNT,"+
+              "BOARD_DATE) values(?,?,?,?,?,?,?,sysdate)";
+           
+           pstmt = con.prepareStatement(sql);
+           pstmt.setInt(1, num);
+           pstmt.setString(2, board.getName());
+           pstmt.setString(3, board.getPass());
+           pstmt.setString(4, board.getSubject());
+           pstmt.setString(5, board.getContent());
+           pstmt.setString(6, board.getFile());
+           pstmt.setInt(7,0);
+           
+           
+           result=pstmt.executeUpdate();
+           if (result==0)
+        	   return false;
+           
+           return true;
+        }catch(Exception ex){
+           System.out.println("boardInsert 에러 : "+ex);
+        }finally{
+        	try {
 				if (con != null) con.close();
 				if (pstmt != null) pstmt.close();
+				if (rs != null) rs.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}// finally
-		return result;
-	}// boardInsert()
+        }
+        return false;
+     }
+     // boardInsert()
 	
 
 	//조회수 업데이트

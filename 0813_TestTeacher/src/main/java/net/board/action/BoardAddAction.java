@@ -1,7 +1,5 @@
 package net.board.action;
 
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,9 +15,9 @@ public class BoardAddAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		
-		BoardDAO boardDao = new BoardDAO();
-		BoardBean boardData = new BoardBean();
-		ActionForward af = new ActionForward();
+		BoardDAO boarddao = new BoardDAO();
+		BoardBean boarddata = new BoardBean();
+		ActionForward forward = new ActionForward();
 		
 		String realFolder = "";
 		String saveFolder = "boardupload";
@@ -32,31 +30,35 @@ public class BoardAddAction implements Action {
 		try {
 			
 			MultipartRequest multi = null;
-			multi = new MultipartRequest(request, 
-					realFolder,
-					filesize,
-					"UTF-8",
-					new DefaultFileRenamePolicy()
-					);
-			boardData.setName(multi.getParameter("board_name"));
-			boardData.setPass(multi.getParameter("board_pass"));
-			boardData.setSubject(multi.getParameter("board_subject"));
-			boardData.setContent(multi.getParameter("board_content"));
 			
-			boardData.setFile(multi.getFilesystemName((String) multi.getFileNames().nextElement()));
+			multi = new MultipartRequest(request,realFolder,filesize,"UTF-8",new DefaultFileRenamePolicy());
+			boarddata.setName(multi.getParameter("board_name"));
+			boarddata.setPass(multi.getParameter("board_pass"));
+			boarddata.setSubject(multi.getParameter("board_subject"));
+			boarddata.setContent(multi.getParameter("board_cotent"));
 			
-		}catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("File upload 오류");
+			boarddata.setFile(multi.getFilesystemName((String)multi.getFileNames().nextElement()));
+			
+			result = boarddao.boardInsert(boarddata);
+			
+			if(result == false) {
+				System.out.println("게시판 등록 실패");
+				return null;
+			}
+			
+			System.out.println("게시판 등록 완료");
+			
+			forward.setRedirect(true);
+			forward.setPath("./BoardList.bo");
+			
+			return forward;
+			
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
 		}
 		
-		
-		
-		af.setPath("/board/qna_board_list.jsp"); // 주소 저장(url)
-		af.setRedirect(false); // 이동 방식 결정 
-		System.out.println("AddAction요청받은 명령어는 : " + af.getPath());
-
-		return af;
+		return null;
 	}
 
 }
