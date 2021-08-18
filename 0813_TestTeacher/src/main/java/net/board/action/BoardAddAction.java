@@ -16,36 +16,41 @@ public class BoardAddAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		String savePath = "boardupload";
-		int uploadFileSizeLimit = 20 * 1024 * 1024;
-		String encType = "UTF-8";
 		
-		ServletContext context = request.getServletContext();
-		String uploadFilePath = context.getRealPath(savePath);
-		
-		MultipartRequest multi = null;
-
-		multi = new MultipartRequest(
-				request, 
-				uploadFilePath,
-				uploadFileSizeLimit, 
-				encType,
-				new DefaultFileRenamePolicy());			
-
-		
+		BoardDAO boardDao = new BoardDAO();
+		BoardBean boardData = new BoardBean();
 		ActionForward af = new ActionForward();
 		
-		BoardBean bVo = new BoardBean();
+		String realFolder = "";
+		String saveFolder = "boardupload";
+		realFolder = request.getRealPath(saveFolder);
 		
-		bVo.setName(multi.getParameter("name"));
-		bVo.setPass(multi.getParameter("pass"));
-		bVo.setContent(multi.getParameter("content"));
-		bVo.setSubject(multi.getParameter("subject"));
-		bVo.setFile(multi.getFilesystemName("file"));
+		int filesize = 10 * 1024 * 1024;
 		
-		BoardDAO bDao = new BoardDAO();
+		boolean result = false;
 		
-		bDao.boardInsert(bVo);
+		try {
+			
+			MultipartRequest multi = null;
+			multi = new MultipartRequest(request, 
+					realFolder,
+					filesize,
+					"UTF-8",
+					new DefaultFileRenamePolicy()
+					);
+			boardData.setName(multi.getParameter("board_name"));
+			boardData.setPass(multi.getParameter("board_pass"));
+			boardData.setSubject(multi.getParameter("board_subject"));
+			boardData.setContent(multi.getParameter("board_content"));
+			
+			boardData.setFile(multi.getFilesystemName((String) multi.getFileNames().nextElement()));
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("File upload 오류");
+		}
+		
+		
 		
 		af.setPath("/board/qna_board_list.jsp"); // 주소 저장(url)
 		af.setRedirect(false); // 이동 방식 결정 
