@@ -35,7 +35,7 @@ public class BoardAddAction implements Action {
 			boarddata.setName(multi.getParameter("board_name"));
 			boarddata.setPass(multi.getParameter("board_pass"));
 			boarddata.setSubject(multi.getParameter("board_subject"));
-			boarddata.setContent(multi.getParameter("board_cotent"));
+			boarddata.setContent(multi.getParameter("board_content"));
 			
 			boarddata.setFile(multi.getFilesystemName((String)multi.getFileNames().nextElement()));
 			

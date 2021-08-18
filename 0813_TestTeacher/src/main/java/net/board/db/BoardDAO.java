@@ -93,8 +93,37 @@ public class BoardDAO {
 	
 	//글 내용 보기.
 	public BoardBean getDetail(int num) throws Exception{
-		return null;
-	}
+		String sql = "select * from board where board_num = ?";
+		BoardBean bVo = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if (rs.next()) { // 한개의 글,행에 대한 조회 if사용
+				bVo = new BoardBean();
+				bVo.setNum(rs.getInt("BOARD_NUM"));
+				bVo.setName(rs.getString("BOARD_NAME"));
+				bVo.setSubject(rs.getString("BOARD_SUBJECT"));
+				bVo.setContent(rs.getString("BOARD_CONTENT"));
+				bVo.setFile(rs.getString("BOARD_FILE"));
+				bVo.setReadcount(rs.getInt("BOARD_READCOUNT"));
+				bVo.setDate(rs.getDate("BOARD_DATE"));
+			}
+		}catch (Exception e) {
+			System.out.println("getDetail() 오류" + e);
+		}finally {
+			try {
+				if (con != null) con.close();
+				if (pstmt != null) pstmt.close();
+				if (rs != null) rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}// finally
+		return bVo;
+	}// getDetail()
 	
 	//글 등록
 	public boolean boardInsert(BoardBean board){
@@ -152,8 +181,25 @@ public class BoardDAO {
 
 	//조회수 업데이트
 	public void setReadCountUpdate(int num) throws Exception{
-		
-	}
+		String sql = 
+				"update board set board_readcount = "
+				+ "board_readcount + 1 where board_num = " + num;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println("setReadCountUpdate 오류" + e);
+		}finally {
+			try {
+				if (con != null) con.close();
+				if (pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}//finally
+	}// setReadCountUpdate()
 
 
 }

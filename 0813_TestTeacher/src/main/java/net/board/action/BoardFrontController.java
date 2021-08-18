@@ -5,61 +5,86 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("*.bo")
-public class BoardFrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class BoardFrontController extends HttpServlet {
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response) {
 		
-	// 요청 처리
+		//요청처리
 		String RequestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = RequestURI.substring(contextPath.length());
-		
-		ActionForward forward = new ActionForward();
 		Action action = null;
-		System.out.println("ActionController 요청받은 명령어는 : " + command);
+		ActionForward forward = null;
 		
-		if (command.equals("/BoardList.bo")) {
+		if(command.equals("/BoardList.bo")) {
 			action = new BoardListAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(command + "요청 오류");
-			}
-		}else if (command.equals("/boardWrite.bo")) {
-			action = new BoardAddAction();
+			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				System.out.println(command + "요청 오류");
+				System.out.println("Boardlist 오류");
+			}
+		}else if(command.equals("/BoardWrite.bo")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("./board/qna_board_write.jsp");
+			
+		}else if(command.equals("/BoardAddAction.bo")){
+			action  = new BoardAddAction();
+			try {
+				forward=action.execute(request, response );
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("BoardAddAction 오류");
+			}
+		}else if (command.equals("/BoardDetailAction.bo")) {
+			action = new BoardDetailAction();
+			try {
+				forward=action.execute(request, response );
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("BoardDetailAction 오류");
 			}
 		}
-	
-		// 공통 기능
-		if (forward != null) {
-			if (forward.isRedirect() == true) {
+		
+		
+		
+		// 공통 기능	
+		if(forward != null) {
+			if(forward.isRedirect()) {
+				try {
 					response.sendRedirect(forward.getPath());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}else {
-				RequestDispatcher dispatcher = 
+				RequestDispatcher dispatcher=
 						request.getRequestDispatcher(forward.getPath());
+				try {
 					dispatcher.forward(request, response);
+				} catch (ServletException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-		}//if		
-		
-		
-		
-	}//doProcess
+		}
+	}
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
 	}
+
 }

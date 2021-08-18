@@ -46,7 +46,7 @@
 					<div align="center">내 용</div>
 				</td>
 				<td>
-					<textarea name="borad_content" cols="65" rows="15"></textarea>
+					<textarea name="board_content" cols="65" rows="15"></textarea>
 				</td>
 			</tr>
 			<tr>

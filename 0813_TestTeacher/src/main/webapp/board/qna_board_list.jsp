@@ -19,7 +19,7 @@
 </style>
 </head>
 <body>
-	<table width=60% cellpadding="0" cellspacing="0">
+	<table width="90%" cellpadding="0" cellspacing="0">
 	<%
 		if (boardCount > 0) {
 		// true
@@ -42,7 +42,11 @@
 	%>
 				<tr>
 					<td width="8%" height="26"><%=bVo.getNum()%></td>
-					<td width="50%" height="26"><%=bVo.getSubject() %></td>
+					<td width="50%" height="26" >
+						<a href="./BoardDetailAction.bo?num=<%=bVo.getNum() %>">
+							<%=bVo.getSubject() %>
+						</a>
+					</td>
 					<td width="14%" height="26"><%=bVo.getName()%></td>
 					<td width="17%" height="26"><%=bVo.getDate()%></td>
 					<td width="11%" height="26"><%=bVo.getReadcount()%></td>
